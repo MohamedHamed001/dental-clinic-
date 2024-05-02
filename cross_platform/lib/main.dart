@@ -1,3 +1,4 @@
+import 'package:cross_platform/login_page.dart';
 import 'package:cross_platform/my_app_bar.dart';
 import 'package:cross_platform/my_home_page.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
+      routes: {
+        '/login': (context) => LoginPage(),
+      },
     );
   }
 }
