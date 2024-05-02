@@ -1,4 +1,5 @@
 import 'package:cross_platform/my_app_bar.dart';
+import 'package:cross_platform/my_home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyAppBar(),
+      home: MyHomePage(),
     );
   }
 }
