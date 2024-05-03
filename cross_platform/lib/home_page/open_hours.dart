@@ -47,7 +47,7 @@ class OpenHours extends StatelessWidget {
                       'Monday - Saturday',
                       style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
-                    Text(' 9:00 AM - 9:00 PM',
+                    Text(' 9:00 AM - 12:00 PM',
                         style: TextStyle(color: Colors.white, fontSize: 20)),
                     Text(
                       'Sunday',
