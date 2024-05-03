@@ -21,13 +21,13 @@ class _MyHomePageState extends State<MyHomePage> {
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: MyAppBar(),
       ),
-      body: Column(
-        children: [
-          AnimatedImages(),
-
-          OpenHours(),
-          // HorizontalHomePagescroll(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            AnimatedImages(),
+            OpenHours(),
+          ],
+        ),
       ),
     );
   }
