@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'login_page.dart';
+import 'registration_page.dart';
 
 class StartPage extends StatefulWidget {
   @override
@@ -12,12 +13,8 @@ class _StartPageState extends State<StartPage> {
   int pageNo = 0;
   late Timer carouselTimer;
 
-  bool IsEqualIndex(int index, int pageNo) {
-    if (index == pageNo) {
-      return true;
-    } else {
-      return false;
-    }
+  bool isEqualIndex(int index, int pageNo) {
+    return index == pageNo;
   }
 
   Timer getTimer() => Timer.periodic(Duration(seconds: 3), (timer) {
@@ -37,84 +34,113 @@ class _StartPageState extends State<StartPage> {
     super.initState();
     pageController = PageController();
     carouselTimer = getTimer();
-    print("Timer started");
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     pageController.dispose();
+    carouselTimer.cancel(); // Ensure to cancel the timer as well
     super.dispose();
   }
 
   Widget build(BuildContext context) {
-    return Container(
-      height: 700,
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 650,
-            child: PageView.builder(
-              controller: pageController,
-              onPageChanged: (index) {
-                setState(() {
-                  pageNo = index;
-                });
-              },
-              itemBuilder: (_, index) {
-                return AnimatedBuilder(
-                    animation: pageController,
-                    builder: (ctx, child) {
-                      return child!;
-                    },
-                    child: Image.asset(
-                      'assets/start/page$index.jpg',
-                      height: 500,
-                    ));
-              },
-              itemCount: 4,
-            ),
+    return Scaffold(
+      body: SingleChildScrollView(
+        // Added to enable scrolling
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             children: [
-              Row(
-                children: List.generate(
-                  4,
-                  (index) => Container(
-                    margin: const EdgeInsets.all(10),
-                    child: Icon(
-                      Icons.circle,
-                      size: 12,
-                      color: IsEqualIndex(index, pageNo)
-                          ? Colors.amber
-                          : Colors.grey,
-                    ),
-                  ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.8, // Adjust height based on the screen size
+                child: PageView.builder(
+                  controller: pageController,
+                  onPageChanged: (index) {
+                    setState(() {
+                      pageNo = index;
+                    });
+                  },
+                  itemBuilder: (_, index) {
+                    return AnimatedBuilder(
+                        animation: pageController,
+                        builder: (ctx, child) {
+                          return child!;
+                        },
+                        child: Image.asset(
+                          'assets/start/page$index.jpg',
+                          fit: BoxFit.cover, // Ensure the image fits well
+                        ));
+                  },
+                  itemCount: 4,
                 ),
-              )
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: List.generate(
+                      4,
+                      (index) => Container(
+                        margin: const EdgeInsets.all(10),
+                        child: Icon(
+                          Icons.circle,
+                          size: 12,
+                          color: isEqualIndex(index, pageNo)
+                              ? Colors.amber
+                              : Colors.grey,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginPage()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color.fromARGB(
+                          255, 82, 191, 245), // Button text color
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    ),
+                    child: Text('Login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                RegistrationPage()), // Navigate to the registration page
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.grey[700], // Button text color
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    ),
+                    child: Text('Sign Up'),
+                  ),
+                ],
+              ),
             ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
-                );
-              },
-              child: Text(
-                'Start',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 82, 191, 245),
-                ),
-              )),
-        ],
+        ),
       ),
     );
   }
