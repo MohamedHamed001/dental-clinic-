@@ -9,7 +9,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             style: TextStyle(
                 color: Colors.black,
                 fontSize: 40,
-                fontFamily: 'Poppins',
+                fontFamily: 'Serif',
                 fontWeight: FontWeight.w700)),
       ),
       backgroundColor: Color.fromARGB(255, 249, 249, 249),
