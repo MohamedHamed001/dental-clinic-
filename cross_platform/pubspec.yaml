@@ -67,6 +67,11 @@ flutter:
     - assets/image2.jpg
     - assets/image3.jpg
     - assets/image4.jpg
+    - assets/start/page1.jpg
+    - assets/start/page2.jpg
+    - assets/start/page3.jpg
+    - assets/start/page0.jpg
+  
     
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
