@@ -63,10 +63,36 @@ class MyDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(
-                Icons.schedule,
+                FontAwesomeIcons.timeline,
               ),
               title: Text(
                 'My Appointments',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(
+                FontAwesomeIcons.prescriptionBottleMedical,
+              ),
+              title: Text(
+                'My Prescriptions',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(
+                FontAwesomeIcons.fileInvoiceDollar,
+              ),
+              title: Text(
+                'Billing Details',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,
