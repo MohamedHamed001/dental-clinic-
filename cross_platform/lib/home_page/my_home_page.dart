@@ -1,6 +1,6 @@
 import 'package:cross_platform/home_page/services.dart';
 import 'package:cross_platform/my_app_bar.dart';
-import 'package:cross_platform/my_drawer.dart';
+import 'package:cross_platform/patient_drawer.dart';
 import 'package:cross_platform/home_page/open_hours.dart';
 import 'package:flutter/material.dart';
 import 'package:cross_platform/my_app_bar.dart';
@@ -19,7 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
+      drawer: PatientDrawer(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
         child: MyAppBar(),
