@@ -11,22 +11,53 @@ class RegistrationPage2 extends StatefulWidget {
 
 class _RegistrationPage2State extends State<RegistrationPage2> {
   final _formKey = GlobalKey<FormState>();
-  late String fullName, dob, gender, address, phoneNumber;
+  late String fullName, dob = '', gender = '', address, phoneNumber;
+  DateTime selectedDate = DateTime.now();
+
+  // Dropdown items
+  final List<String> genders = ['Male', 'Female'];
+
+  // Function to handle date picking
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1900),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        dob = "${picked.toLocal()}"
+            .split(' ')[0]; // Format and set the date of birth
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    final themeColor = Color.fromARGB(255, 82, 191, 245);
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Complete Registration"),
+        backgroundColor: themeColor,
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Form(
           key: _formKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: 'Full Name'),
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: Icon(Icons.person_outline, color: themeColor),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your full name';
@@ -35,28 +66,60 @@ class _RegistrationPage2State extends State<RegistrationPage2> {
                 },
                 onSaved: (value) => fullName = value!,
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Date of Birth'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your date of birth';
-                  }
-                  return null;
-                },
-                onSaved: (value) => dob = value!,
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: () => _selectDate(context),
+                child: AbsorbPointer(
+                  child: TextFormField(
+                    controller: TextEditingController(text: dob),
+                    decoration: InputDecoration(
+                      labelText: 'Date of Birth',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      prefixIcon: Icon(Icons.calendar_today, color: themeColor),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your date of birth';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
               ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Gender'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your gender';
-                  }
-                  return null;
+              SizedBox(height: 20),
+              DropdownButtonFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: Icon(Icons.transgender, color: themeColor),
+                ),
+                value: gender.isEmpty ? null : gender,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    gender = newValue!;
+                  });
                 },
-                onSaved: (value) => gender = value!,
+                items: genders.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                validator: (value) =>
+                    value == null ? 'Please select your gender' : null,
               ),
+              SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Address'),
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: Icon(Icons.home, color: themeColor),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your address';
@@ -65,26 +128,44 @@ class _RegistrationPage2State extends State<RegistrationPage2> {
                 },
                 onSaved: (value) => address = value!,
               ),
+              SizedBox(height: 20),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Phone Number'),
+                decoration: InputDecoration(
+                  labelText: 'Phone Number',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  prefixIcon: Icon(Icons.phone, color: themeColor),
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your phone number';
+                  }
+                  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return 'Enter a valid phone number'; // Validates for numeric input
                   }
                   return null;
                 },
                 onSaved: (value) => phoneNumber = value!,
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 30),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: themeColor,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    // Navigate to another page or pop the stack
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => MyHomePage()),
                     );
+                    // Navigate to another page or pop the stack
                   }
                 },
                 child: Text('Register'),
