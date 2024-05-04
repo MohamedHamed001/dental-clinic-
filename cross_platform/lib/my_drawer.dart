@@ -19,7 +19,7 @@ class MyDrawer extends StatelessWidget {
         backgroundColor: Colors.white,
         child: ListView(
           children: [
-            ListTile(
+            const ListTile(
               title: Text(
                 'WELCOME TO OUR CLINIC',
                 style: TextStyle(
@@ -30,14 +30,14 @@ class MyDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(
+            const Divider(
               color: Color.fromARGB(255, 82, 191, 245),
               thickness: 4,
               indent: 20,
               endIndent: 20,
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 'My Profile',
                 style: TextStyle(
                   color: Colors.black,
@@ -48,11 +48,11 @@ class MyDrawer extends StatelessWidget {
               tileColor: const Color.fromARGB(255, 236, 233, 233),
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.person,
                 color: Colors.black,
               ),
-              title: Text(
+              title: const Text(
                 'Edit Profile',
                 style: TextStyle(
                   color: Colors.black,
@@ -62,10 +62,10 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 FontAwesomeIcons.timeline,
               ),
-              title: Text(
+              title: const Text(
                 'My Appointments',
                 style: TextStyle(
                   color: Colors.black,
@@ -75,10 +75,10 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 FontAwesomeIcons.prescriptionBottleMedical,
               ),
-              title: Text(
+              title: const Text(
                 'My Prescriptions',
                 style: TextStyle(
                   color: Colors.black,
@@ -88,10 +88,10 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 FontAwesomeIcons.fileInvoiceDollar,
               ),
-              title: Text(
+              title: const Text(
                 'Billing Details',
                 style: TextStyle(
                   color: Colors.black,
@@ -100,7 +100,7 @@ class MyDrawer extends StatelessWidget {
               ),
               onTap: () {},
             ),
-            ListTile(
+            const ListTile(
               title: Text(
                 'Services',
                 style: TextStyle(
@@ -108,14 +108,14 @@ class MyDrawer extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              tileColor: const Color.fromARGB(255, 236, 233, 233),
+              tileColor: Color.fromARGB(255, 236, 233, 233),
             ),
             ListTile(
               minVerticalPadding: 0,
-              leading: Icon(
+              leading: const Icon(
                 Icons.check_circle,
               ),
-              title: Text(
+              title: const Text(
                 'Dental checkup',
                 style: TextStyle(
                   color: Colors.black,
@@ -126,10 +126,10 @@ class MyDrawer extends StatelessWidget {
             ),
             ListTile(
               minVerticalPadding: 0,
-              leading: Icon(
+              leading: const Icon(
                 Icons.brush,
               ),
-              title: Text(
+              title: const Text(
                 'Teeth cleaning',
                 style: TextStyle(
                   color: Colors.black,
@@ -139,11 +139,11 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.remove_circle,
               ),
               minVerticalPadding: 0,
-              title: Text(
+              title: const Text(
                 'Tooth extraction',
                 style: TextStyle(
                   color: Colors.black,
@@ -153,10 +153,10 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.healing,
               ),
-              title: Text(
+              title: const Text(
                 'Root canal treatment',
                 style: TextStyle(
                   color: Colors.black,
@@ -166,10 +166,10 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 FontAwesomeIcons.faceSmile,
               ),
-              title: Text(
+              title: const Text(
                 'Orthodontics',
                 style: TextStyle(
                   color: Colors.black,
@@ -179,10 +179,10 @@ class MyDrawer extends StatelessWidget {
               onTap: () {},
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 FontAwesomeIcons.teeth,
               ),
-              title: Text(
+              title: const Text(
                 'Teeth braces',
                 style: TextStyle(
                   color: Colors.black,
