@@ -36,7 +36,7 @@ class _RegistrationPage2State extends State<RegistrationPage2> {
 
   @override
   Widget build(BuildContext context) {
-    final themeColor = Color.fromARGB(255, 82, 191, 245);
+    final themeColor = Color(0xFF52BFF5);
 
     return Scaffold(
       appBar: AppBar(

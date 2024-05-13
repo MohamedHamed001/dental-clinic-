@@ -1,8 +1,7 @@
-import 'dart:ui';
-
-import 'package:cross_platform/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cross_platform/reserve_appointment.dart';
+// Adjust the import path as necessary
 
 class PatientDrawer extends StatelessWidget {
   PatientDrawer({Key? key}) : super(key: key);
@@ -14,7 +13,7 @@ class PatientDrawer extends StatelessWidget {
         screenWidth * 0.75; // Drawer covers 75% of the screen width
 
     return SizedBox(
-      width: drawerWidth, // Control the width of the drawer
+      width: drawerWidth,
       child: Drawer(
         backgroundColor: Colors.white,
         child: ListView(
@@ -110,90 +109,43 @@ class PatientDrawer extends StatelessWidget {
               ),
               tileColor: Color.fromARGB(255, 236, 233, 233),
             ),
-            ListTile(
-              minVerticalPadding: 0,
-              leading: const Icon(
-                Icons.check_circle,
-              ),
-              title: const Text(
-                'Dental checkup',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              minVerticalPadding: 0,
-              leading: const Icon(
-                Icons.brush,
-              ),
-              title: const Text(
-                'Teeth cleaning',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.remove_circle,
-              ),
-              minVerticalPadding: 0,
-              title: const Text(
-                'Tooth extraction',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
-                Icons.healing,
-              ),
-              title: const Text(
-                'Root canal treatment',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
-                FontAwesomeIcons.faceSmile,
-              ),
-              title: const Text(
-                'Orthodontics',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(
-                FontAwesomeIcons.teeth,
-              ),
-              title: const Text(
-                'Teeth braces',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-              ),
-              onTap: () {},
-            ),
+            _createServiceListTile(
+                context, 'Dental checkup', Icons.check_circle),
+            _createServiceListTile(context, 'Teeth cleaning', Icons.brush),
+            _createServiceListTile(
+                context, 'Tooth extraction', Icons.remove_circle),
+            _createServiceListTile(
+                context, 'Root canal treatment', Icons.healing),
+            _createServiceListTile(
+                context, 'Orthodontics', FontAwesomeIcons.faceSmile),
+            _createServiceListTile(
+                context, 'Teeth braces', FontAwesomeIcons.teeth),
           ],
         ),
       ),
+    );
+  }
+
+  ListTile _createServiceListTile(
+      BuildContext context, String serviceName, IconData icon) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(
+        serviceName,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 15,
+        ),
+      ),
+      onTap: () {
+        Navigator.pop(context); // Close the drawer
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ReserveAppointmentPage(serviceName: serviceName)),
+        );
+      },
     );
   }
 }
