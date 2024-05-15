@@ -1,10 +1,8 @@
 import 'package:cross_platform/doctor_portal/doctor_drawer.dart';
 import 'package:cross_platform/home_page/services.dart';
 import 'package:cross_platform/my_app_bar.dart';
-import 'package:cross_platform/patient_drawer.dart';
 import 'package:cross_platform/home_page/open_hours.dart';
 import 'package:flutter/material.dart';
-import 'package:cross_platform/my_app_bar.dart';
 import 'package:cross_platform/home_page/features.dart';
 import 'package:cross_platform/home_page/animated_images.dart';
 import 'package:cross_platform/home_page/footer.dart';
