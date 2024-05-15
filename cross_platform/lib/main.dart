@@ -3,7 +3,10 @@ import 'package:cross_platform/login_page.dart';
 import 'package:cross_platform/home_page/my_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:cross_platform/start_page.dart';
-// import 'package:flutter_stripe/flutter_stripe.dart';
+
+import 'package:cross_platform/doctor_portal/doctor_drawer.dart';
+import 'package:cross_platform/doctor_portal/doctor_appointments.dart';
+
 
 void main() {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +31,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/MyHomePage': (context) => MyHomePage(),
+        '/DoctorDrawer': (context) => DoctorDrawer(),
+        '/DocotorAppointments': (context) => DoctorAppointments(),
       },
     );
   }
