@@ -1,7 +1,9 @@
+// import 'package:cross_platform/billing_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cross_platform/reserve_appointment.dart';
-// Adjust the import path as necessary
+import 'package:cross_platform/my_appointments.dart';
+import 'package:cross_platform/my_profile_page.dart'; // Add this import
 
 class PatientDrawer extends StatelessWidget {
   PatientDrawer({Key? key}) : super(key: key);
@@ -43,7 +45,13 @@ class PatientDrawer extends StatelessWidget {
                   fontSize: 20,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyProfilePage()),
+                );
+              },
               tileColor: const Color.fromARGB(255, 236, 233, 233),
             ),
             ListTile(
@@ -58,7 +66,13 @@ class PatientDrawer extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyProfilePage()),
+                );
+              },
             ),
             ListTile(
               leading: const Icon(
@@ -71,7 +85,13 @@ class PatientDrawer extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context); // Close the drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyAppointmentsPage()),
+                );
+              },
             ),
             ListTile(
               leading: const Icon(
@@ -97,7 +117,13 @@ class PatientDrawer extends StatelessWidget {
                   fontSize: 15,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                // Navigator.pop(context); // Close the drawer
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => BillingDetailsPage()),
+                // );
+              },
             ),
             const ListTile(
               title: Text(
